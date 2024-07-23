@@ -48,8 +48,8 @@ func MintAndPay(client *ethclient.Client, userAddress common.Address) error {
 		return fmt.Errorf("error creating transactor: %v", err)
 	}
 	auth.Nonce = big.NewInt(int64(nonce))
-	auth.Value = big.NewInt(1)     // in wei
-	auth.GasLimit = uint64(100000) // Adjust as needed
+	auth.Value = big.NewInt(0)     // in wei
+	auth.GasLimit = uint64(300000) // Adjust as needed
 	auth.GasPrice = gasPrice
 
 	contractAddress := common.HexToAddress(os.Getenv("CONTRACT_ADDRESS"))
