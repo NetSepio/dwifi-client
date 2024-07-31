@@ -4,16 +4,16 @@
 Erebrus DWiFi Client is a Go-based application that allows users to connect to decentralized WiFi networks. It scans for nearby WiFi networks, fetches information about Erebrus-registered networks from an API, and enables users to connect to these networks with a pay-per-minute model using cryptocurrency on the Peaq network.
 
 #Features
-Scan for nearby WiFi networks
-Fetch and display Erebrus-registered DWiFi networks
-Connect to selected DWiFi networks
-Real-time connection monitoring
-Automatic disconnection and payment processing
+-Scan for nearby WiFi networks
+-Fetch and display Erebrus-registered DWiFi networks
+-Connect to selected DWiFi networks
+-Real-time connection monitoring
+-Automatic disconnection and payment processing
 
 #Prerequisites
-Go 1.15 or higher
-Windows operating system (for WiFi scanning and connection features)
-Peaq network wallet
+-Go 1.15 or higher
+-Windows operating system (for WiFi scanning and connection features)
+-Peaq network wallet
 
 ## Installation
 
