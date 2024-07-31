@@ -52,7 +52,7 @@ func MintAndPay(client *ethclient.Client, userAddress common.Address) error {
 	auth.GasLimit = uint64(300000) // Adjust as needed
 	auth.GasPrice = gasPrice
 
-	contractAddress := common.HexToAddress(os.Getenv("CONTRACT_ADDRESS"))
+	contractAddress := common.HexToAddress("0x8772540540639241C59Cc22e838FD8a0F2553EFf")
 	instance, err := contract.NewContract(contractAddress, client)
 	if err != nil {
 		return fmt.Errorf("error creating contract instance: %v", err)

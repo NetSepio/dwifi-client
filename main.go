@@ -107,7 +107,7 @@ func main() {
 			for i, ssid := range readyNetworks {
 				info := ssidInfoMap[strings.ToLower(ssid)]
 				color.Yellow("%d. SSID: %s", i+1, ssid) // Serial number starts at 1
-				color.Yellow("   Price: %s AGNG per minute", info.PricePerMin)
+				color.Yellow("   Price: %s ETH per minute", info.PricePerMin)
 				color.Yellow("   Network: %s", info.ChainName)
 			}
 		}
@@ -182,7 +182,7 @@ func main() {
 				totalCost := totalMinutes * pricePerMin
 
 				color.Green("Total connected time: %s", connectedTime)
-				color.Green("Total cost: %.5f AGNG (Price per min: %s AGNG)", totalCost, info.PricePerMin)
+				color.Green("Total cost: %.5f ETH (Price per min: %s ETH)", totalCost, info.PricePerMin)
 				disconnectAndPay(client)
 				break connectionLoop
 			}
