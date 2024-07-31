@@ -37,8 +37,6 @@ Dwifi_NODE_URL=
 
 PRIVATE_KEY=
 
-CONTRACT_ADDRESS=
-
 ## Usage
 
 1. Run the application:go run main.go
@@ -53,8 +51,13 @@ CONTRACT_ADDRESS=
 
  -Disconnect and process payment
 
+3. For more detailed information, please refer to https://docs.netsepio.com/latest/v/erebrus/netsepio/erebrus/setup/setup-dwifi-client.
+
 ## Dependencies
 
 - github.com/ethereum/go-ethereum: Ethereum client
 - github.com/fatih/color: Colored console output
 - github.com/joho/godotenv: Environment variable management
+
+
+
