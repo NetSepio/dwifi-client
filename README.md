@@ -27,7 +27,7 @@ Erebrus DWiFi Client is a Go-based application that allows users to connect to d
 ## Installation
 
 1. Clone the repository:https://github.com/NetSepio/dwifi-client.git
-2. Navigate to the project directory:cd ./dwifi-client
+2. Navigate to the project directory: cd ./dwifi-client
 
 ## Configuration
 
