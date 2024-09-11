@@ -52,17 +52,21 @@ func MintAndPay(client *ethclient.Client, userAddress common.Address) error {
 	auth.GasLimit = uint64(300000) // Adjust as needed
 	auth.GasPrice = gasPrice
 
-	contractAddress := common.HexToAddress("0x8772540540639241C59Cc22e838FD8a0F2553EFf")
+	contractAddress := common.HexToAddress("0xA56e3502C8224F9D3AfF5C2D11407E349eaaeBc1")
 	instance, err := contract.NewContract(contractAddress, client)
 	if err != nil {
 		return fmt.Errorf("error creating contract instance: %v", err)
 	}
 
-	// Convert userAddress to string
-	userAddressString := userAddress.Hex()
+	// Set the payable amount to 0.0001 ether
+	payableAmount := new(big.Int).Mul(big.NewInt(100000000000000), big.NewInt(1)) // 0.0001 ether in wei
+	auth.Value = payableAmount
 
-	// Call the mint function with the user's address as a string
-	tx, err := instance.Mint(auth, userAddressString)
+	// Set the metadata URI (you may want to make this configurable)
+	metadataURI := "https://ipfs.io/ipfs/Qma99ksf4Uo7LpYWH4mYrJ5ShnAx8sSSMNVt5cuDWmhCpR"
+
+	// Call the mint function with the new parameters
+	tx, err := instance.Mint(auth, metadataURI)
 	if err != nil {
 		return fmt.Errorf("error calling Mint function: %v", err)
 	}

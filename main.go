@@ -39,7 +39,7 @@ func main() {
 	}
 	userWalletAddress = common.HexToAddress(addressStr)
 
-	client, err := ethclient.Dial(os.Getenv("ETHEREUM_NODE_URL"))
+	client, err := ethclient.Dial(os.Getenv("AGUNG_NODE_URL"))
 	if err != nil {
 		color.Red("Failed to connect to the Ethereum client: %v", err)
 		return
@@ -137,6 +137,16 @@ func main() {
 		selectedSSIDLower := strings.ToLower(selectedSSID)
 		info := ssidInfoMap[selectedSSIDLower]
 
+		// Mint NFT before connecting
+		color.Cyan("Minting NFT before connecting...")
+		err = callcontract.MintAndPay(client, userWalletAddress)
+		if err != nil {
+			color.Red("Error minting NFT: %v", err)
+			continue
+		}
+		color.Green("NFT minted successfully!")
+
+		// Connect to WiFi
 		color.Cyan("Connecting to %s...", selectedSSID)
 		err = wifi.ConnectToWiFi(selectedSSID, info.Password)
 		if err != nil {
@@ -170,7 +180,7 @@ func main() {
 			case <-ticker.C:
 				connectedTime := time.Since(startTime).Round(time.Second)
 				color.Cyan("Connected to %s for %s", selectedSSID, connectedTime)
-				color.Yellow("Press 'd' to disconnect and pay")
+				color.Yellow("Press 'd' to disconnect")
 			case <-disconnectChan:
 				connectedTime := time.Since(startTime).Round(time.Second)
 				totalMinutes := float64(connectedTime.Minutes())
@@ -183,7 +193,7 @@ func main() {
 
 				color.Green("Total connected time: %s", connectedTime)
 				color.Green("Total cost: %.5f ETH (Price per min: %s ETH)", totalCost, info.PricePerMin)
-				disconnectAndPay(client)
+				disconnectFromWiFi()
 				break connectionLoop
 			}
 		}
@@ -214,17 +224,11 @@ func fetchWiFiDataWithRetry() ([]wifi.WiFiData, error) {
 
 	return nil, err
 }
-func disconnectAndPay(client *ethclient.Client) {
-	color.Yellow("Initiating disconnection and payment process...")
-
-	err := callcontract.MintAndPay(client, userWalletAddress)
-	if err != nil {
-		color.Red("Error in payment process: %v", err)
-		return
-	}
+func disconnectFromWiFi() {
+	color.Yellow("Initiating disconnection process...")
 
 	// Disconnect from WiFi
-	err = wifi.DisconnectFromWiFi()
+	err := wifi.DisconnectFromWiFi()
 	if err != nil {
 		color.Red("Error disconnecting from WiFi: %v", err)
 	} else {
