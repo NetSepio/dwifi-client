@@ -1,8 +1,10 @@
 #Erebrus DWiFi Client
 
+![image](https://github.com/user-attachments/assets/521f54b2-6b4b-446f-9dd0-8f6f300d200d)
+
 #Description: 
 
-Erebrus DWiFi Client is a Go-based application that allows users to connect to decentralized WiFi networks. It scans for nearby WiFi networks, fetches information about Erebrus-registered networks from an API, and enables users to connect to these networks with a pay-per-minute model using cryptocurrency on the Peaq network.
+Erebrus DWiFi Client is a Go-based application that allows users to connect to decentralized WiFi networks. It scans for nearby WiFi networks, fetches information about Erebrus-registered networks from an API, and enables users to connect to these networks with a pay-per-minute model using AGNG on the Peaq network.
 
 #Features:
 
@@ -37,8 +39,6 @@ Dwifi_NODE_URL=
 
 PRIVATE_KEY=
 
-CONTRACT_ADDRESS=
-
 ## Usage
 
 1. Run the application:go run main.go
@@ -53,8 +53,13 @@ CONTRACT_ADDRESS=
 
  -Disconnect and process payment
 
+3. For more detailed information, please refer to https://docs.netsepio.com/latest/v/erebrus/netsepio/erebrus/setup/setup-dwifi-client.
+
 ## Dependencies
 
 - github.com/ethereum/go-ethereum: Ethereum client
 - github.com/fatih/color: Colored console output
 - github.com/joho/godotenv: Environment variable management
+
+
+
